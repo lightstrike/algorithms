@@ -1,8 +1,12 @@
 import sys
 import getopt
+import time
 
 
 def main(argv):
+    # start timer
+    start_time = time.time()
+
     # Set input and output files
     inputfile = ''
     outputfile = ''
@@ -38,6 +42,9 @@ def main(argv):
 
     print("This list has", total_inversions, "total inversions")
 
+    # print execution time
+    print("Running time of", time.time() - start_time, "seconds")
+
 
 def get_list_from_file(inputfile):
     """
@@ -69,7 +76,6 @@ def merge_sort(number_list, inversions=0):
     if len(number_list) is 1:
         return number_list, 0
     middle = int(len(number_list)/2)
-    # left_list, right_list = split_list(number_list)
     left_list, l_inversions = merge_sort(number_list[:middle])
     right_list, r_inversions = merge_sort(number_list[middle:])
     inversions = l_inversions + r_inversions
